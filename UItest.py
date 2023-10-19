@@ -22,9 +22,16 @@ if auth_token == "your_dummy_token":
         openai.api_base = "https://cocochat.openai-azure.com/"
         openai.api_version = "2023-05-15"
         deployment_name = 'cocoGPT'
-        # Replace the following line with your actual API call
-        response = requests.post(openai.api_base, json={"input": user_input})
-        generated_text = response.json().get("output", "Error generating response")
+        
+        # Making API call using openai library
+        completion = openai.ChatCompletion.create(
+            engine="text-davinci-002",
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": user_input}
+            ]
+        )
+        generated_text = completion.choices[0].message.content
 
         # Update conversation history
         conversation_history.append({"user": user_input, "chatbot": generated_text})
