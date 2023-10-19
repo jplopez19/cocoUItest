@@ -54,7 +54,7 @@ if auth_token == "your_dummy_token":
             st.write(f"An error occurred: {e} 😢")
 
         # Record user feedback
-        feedback = st.radio("Was this response helpful? 👍👎", ("Thumb Up 👍", "Thumb Down 👎"))
+        feedback = st.radio("Was this response helpful? 👍👎", ("Yes 👍", "No 👎"))
         explanation = st.text_input("Explanation for your assessment 📝:", key="explanation")
         if st.button("Submit Feedback 📤"):
             feedback_history.append({"feedback": feedback, "explanation": explanation})
